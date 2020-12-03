@@ -352,16 +352,27 @@
 \renewcommand{\headrulewidth}{0pt}
 
 % 设置目录格式
-\titlecontents{chapter}[0pt]{\heiti\zihao{-4}}{\thecontentslabel\ }{}
-{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
-\titlecontents{section}[2em]{\songti\zihao{-4}}{\thecontentslabel\ }{}
-{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
-\titlecontents{subsection}[3em]{\songti\zihao{-4}}{\thecontentslabel\ }{}
-{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
-\titlecontents{figure}[0pt]{\songti\zihao{-4}}{图~\thecontentslabel\quad}{}
-{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
-\titlecontents{table}[0pt]{\songti\zihao{-4}}{表~\thecontentslabel\quad}{}
-{\hspace{.5em}\titlerule*[4pt]{$\cdot$}\contentspage}
+
+\titlecontents{chapter}[0pt]{\settowidth{\hangindent}{\thecontentslabel}\heiti\zihao{-4}}
+{\thecontentslabel}{}
+{\hspace{.25em}\titlerule*[4pt]{$\cdot$}\contentspage}
+
+\titlecontents{section}[2em]{\settowidth{\hangindent}{\thecontentslabel\ \ }\songti\zihao{-4}}
+{\thecontentslabel\ \ }{}
+{\hspace{.25em}\titlerule*[4pt]{$\cdot$}\contentspage}
+
+\titlecontents{subsection}[3em]{\settowidth{\hangindent}{\thecontentslabel\ \ }\songti\zihao{-4}}
+{\thecontentslabel\ \ }{}
+{\hspace{.25em}\titlerule*[4pt]{$\cdot$}\contentspage}
+
+
+\titlecontents{figure}[0pt]{\settowidth{\hangindent}{图~\thecontentslabel\ \ }\songti\zihao{-4}}
+{图~\thecontentslabel\ \ }{}
+{\hspace{.25em}\titlerule*[4pt]{$\cdot$}\contentspage}
+
+\titlecontents{table}[0pt]{\settowidth{\hangindent}{表~\thecontentslabel\ \ }\songti\zihao{-4}}
+{表~\thecontentslabel\ \ }{}
+{\hspace{.25em}\titlerule*[4pt]{$\cdot$}\contentspage}
 
 % 图表环境设置
 \let\org@table\table
@@ -644,7 +655,7 @@
     \begin{tabular}{cll}
       作者姓名  & \@authorcn \\
       学科专业  & \multicolumn{2}{l}{\@major} \\
-      指导老师  & \@tutorcn   & \@tutordegree \\
+      指导教师  & \@tutorcn   & \@tutordegree \\
       \ifthenelse{\isundefined{\@cotutorcn}}{}{%
                 & \@cotutorcn & \@cotutordegree\\
       }
@@ -677,7 +688,7 @@
     {\zihao{4}
       A Dissertation Submitted for the Degree of
       \ifthenelse{\equal{\@thesis}{master} \OR \equal{\@thesis}{professional}}{Master}{}
-      \ifthenelse{\equal{\@thesis}{doctor}}{Docrtor of Philosophy}{}
+      \ifthenelse{\equal{\@thesis}{doctor}}{Doctor of Philosophy}{}
     }
 
     \vspace{100pt}
@@ -724,11 +735,11 @@
   \begin{spacing}{1.2}
     {\zihao{-2} \heiti
         \ifthenelse{\equal{\@thesis}{master}}{%
-         \makebox[16\ccwd][s]{硕士学位论文}}{
+         \makebox[11\ccwd][s]{硕士学位论文}}{
         \ifthenelse{\equal{\@thesis}{professional}}{%
-         \makebox[16\ccwd][s]{硕士学位论文}}{
+         \makebox[11\ccwd][s]{硕士学位论文}}{
         \ifthenelse{\equal{\@thesis}{doctor}}{%
-          \makebox[16\ccwd][s]{博士学位论文}}{}
+          \makebox[11\ccwd][s]{博士学位论文}}{}
         }}
 
     }
@@ -754,9 +765,9 @@
         \ifthenelse{\equal{\@thesis}{master} \OR \equal{\@thesis}{professional}}{硕士}{
         \ifthenelse{\equal{\@thesis}{doctor}}{博士}{}}
       }       \\
-      指导老师姓名 &          \multicolumn{3}{l}{\@tutorcn}                    & 职\hspace{2\ccwd}称 &                        \multicolumn{3}{l}{\@tutordegree}                      \\
+      指导教师姓名 &          \multicolumn{3}{l}{\@tutorcn}                    & 职\hspace{2\ccwd}称 &                        \multicolumn{3}{l}{\@tutordegree}                      \\
       学科专业     &          \multicolumn{3}{l}{\@major}                      & 研究方向            &                        \multicolumn{3}{l}{\@feild}                            \\
-      学习时间自   & \@dateenrolly\ 年 & \@dateenrollm\ 月 & \@dateenrolld\ 日 & 起至                & \@dategraduatey\ 年 & \@dategraduatem\ 月 & \@dategraduated\ 日止             \\
+      学习时间自   & \@dateenrolly\ 年 & \@dateenrollm\ 月 & \@dateenrolld\ 日 & \hspace{2\ccwd}起至 & \@dategraduatey\ 年 & \@dategraduatem\ 月 & \@dategraduated\ 日止             \\
       论文提交日期 & \@datesubmity\ 年 & \@datesubmitm\ 月 & \@datesubmitd\ 日 & 论文答辩日期        & \@datedefencey \ 年 & \@datedefencem \ 月 & \@datedefenced \ 日\hspace{\ccwd} \\
       学位授予单位 &          \multicolumn{3}{l}{北京航空航天大学}             & 学位授予日期        &                  年 &                  月 &                  日\hspace{\ccwd} \\
     \end{tabular}
